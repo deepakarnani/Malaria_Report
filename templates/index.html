@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Malaria Spread</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/grayscale.min.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Numeric JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+    
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Main</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#projects">Visuals</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" role="button" href="#signup">Roadmap</a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visuals <span class="caret"></span></a>
+                <ul class="dropdown-menu"> 
+                    <li><a class="nav-link js-scroll-trigger" href="#piechart">Deaths > 5000</a></li>
+                    <li><a class="nav-link js-scroll-trigger" href="#candlestick">Malaria Deaths</a></li>
+                    <li><a class="nav-link js-scroll-trigger" href="#scatterplot">Net Distribution</a></li>
+                    <li><a class="nav-link js-scroll-trigger" href="#barchart">GDP and Malaria</a></li>
+                    <li><a class="nav-link js-scroll-trigger" href="#GeoMap">Avg Reported Cases</a></li>
+                    <li><a class="nav-link js-scroll-trigger" href="#deaths_50">Avg Deaths 50-69</a></li>
+                    <li><a class="nav-link js-scroll-trigger" href="#deaths_15">Avg Deaths 15-49</a></li>
+                    <li><a class="nav-link js-scroll-trigger" href="#deaths_5">Avg Deaths 5-14/a></li>
+                    <li><a class="nav-link js-scroll-trigger" href="#alldeaths">All Deaths</a></li>
+
+                    </ul>
+                <!-- <a class="nav-link js-scroll-trigger" href="#signup">Visuals</a>  -->
+            </li>
+            <!-- <li class="nav-item" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visuals <span class="caret"></span></a>
+                <ul class="dropdown-menu"> 
+                  <li><a class="nav-link js-scroll-trigger" href="#piechart">Pie Chart</a></li>
+                  <li><a class="nav-link js-scroll-trigger" href="#candlestick">Candlestick</a></li>
+                  <li><a class="nav-link js-scroll-trigger" href="#barchart">Bar Chart</a></li>
+                  <li><a class="nav-link js-scroll-trigger" href="#GeoMap">GeoMap</a></li>
+                </ul>
+              </li> -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container d-flex h-100 align-items-center">
+        <div class="mx-auto text-center">
+          <h1 class="mx-auto my-0 text-uppercase">Malaria Spread</h1>
+          <h2 class="text-white-50 mx-auto mt-2 mb-5">Tracking the spread of Malaria. Discovering future strategies.</h2>
+          <form action="/scrape" method="post">
+            <button type="submit" class="btn btn-warning btn-lg" value='new_scrape' style="color:black">Enligten Me</button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+
+  <!-- 1. Mars News -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <h3>Latest Malaria News</h3>
+              <hr>
+              <h4 class="card-title">{{malaria.news_title}}</h4>
+              <p class="card-text">{{malaria.news_p}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-white mb-4">What is Malaria?</h2>
+            <p class="text-white-50">Malaria is a disease of the blood that is caused by the Plasmodium parasite, which is transmitted from person to person by a particular type of mosquito.</p>
+            <h2 class="text-white mb-4">Why Malaria?</h2>
+            <p class="text-white-50">Malaria is one of oldest and deadliest diseases, devastating families, communities, and countries. However, despite tremendous progress, malaria remains one of the top killers of children under five and is a major cause of poverty and inequity in Africa. Malaria keeps families and communities from prospering. By sustaining investments in ending malaria and improving health, we can unlock economic growth and human potential. A 10% decrease in malaria has been associated with a .3% rise in GDP. Malaria-free countries have 5x greater economic growth than countries with malaria.  Malaria also keeps children from going to school, families from investing in their future, and communities from prospering, taking a huge toll on lives, livelihoods and countries’ progress.</p>
+            <h2 class="text-white mb-4">Our Vision</h2>
+            <p class="text-white-50">Identify the countries with highest burden of malaria (# of reported cases and deaths under age 5) and countries with highest resource needs.</p>
+
+
+          </div>
+        </div>
+        <img src="static/img/a_herd_of_african_elephants_walking_in_a_line-wallpaper-1680x1050.jpg" class="img-fluid" alt="">
+      </div>
+    </section>
+  
+
+    <!-- Projects Section -->
+    <section id="piechart" class="projects-section text-center">
+      <div class="container">
+
+        <!-- Featured Project Row -->
+        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+          <p class="text-black-50">First, we wanted to take a look at which countries are affected by malaria deaths with a threshold greater than 5000.</p>
+          <div id='pieplot' class='col-lg-12'></div>
+    
+          </div>
+   
+        </div>
+   
+        </section>
+        <!-- Project One Row -->
+        <div id="candlstick" class="row justify-content-center no-gutters mb-5 mb-lg-0">
+          <div id='candlestick' class="col-lg-12" style="width:100%; height: 600px;">
+            <!-- <img class="img-fluid" src="img/demo-image-01.jpg" alt="" style="width:100%;"> -->
+          </div>
+          <!-- <div class="col-lg-6">
+            <div class="bg-black text-center h-100 project">
+              <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                  <h4 class="text-white">Misty</h4>
+                  <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                  <hr class="d-none d-lg-block mb-0 ml-0">
+                </div>
+              </div>
+            </div> -->
+          </div>
+        <br>
+
+        <div id="scatterplot" class="row justify-content-center no-gutters mb-5 mb-lg-0">
+            <div id='scatter' class="col-lg-12" style="width:100%; height: 600px;">
+              <!-- <img class="img-fluid" src="img/demo-image-01.jpg" alt="" style="width:100%;"> -->
+            </div>
+            <!-- <div class="col-lg-6">
+              <div class="bg-black text-center h-100 project">
+                <div class="d-flex h-100">
+                  <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">Misty</h4>
+                    <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                    <hr class="d-none d-lg-block mb-0 ml-0">
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          <br>
+     
+        <!-- Project Two Row -->
+        <div id="barchart" class="row justify-content-center no-gutters mb-5 mb-lg-0">
+          <div id='barChart' class="col-lg-12" style="width:100%; height: 600px;">
+            <img class="img-fluid" src="static/img/demo-image-02.jpg" alt="" style="width:100%">
+          </div>
+          <!-- <div class="col-lg-6 order-lg-first">
+            <div class="bg-black text-center h-100 project">
+              <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-right">
+                  <h4 class="text-white">Mountains</h4>
+                  <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                  <hr class="d-none d-lg-block mb-0 mr-0">
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+
+        <!-- Project One Row -->
+        <div id="GeoMap" class="row align-items-center no-gutters mb-4 mb-lg-5">
+            <!-- <p class="text-black-50">First, we wanted to take a look at which countries are affected by malaria deaths with a threshold greater than 5000.</p> -->
+            <div id='geomap' class='col-lg-12' style="width:100%; height: 600px;"></div>
+      
+            </div>
+     
+          </div>
+
+          <div id="deaths_50" class="row align-items-center no-gutters mb-4 mb-lg-5">
+              <!-- <p class="text-black-50">First, we wanted to take a look at which countries are affected by malaria deaths with a threshold greater than 5000.</p> -->
+              <div id='geomap2' class='col-lg-12' style="width:100%; height: 600px;"></div>
+        
+              </div>
+       
+            </div>
+          
+            <div id="deaths_15" class="row align-items-center no-gutters mb-4 mb-lg-5">
+                <!-- <p class="text-black-50">First, we wanted to take a look at which countries are affected by malaria deaths with a threshold greater than 5000.</p> -->
+                <div id='geomap3' class='col-lg-12' style="width:100%; height: 600px;"></div>
+          
+                </div>
+         
+              </div>
+              <div id="deaths_5" class="row align-items-center no-gutters mb-4 mb-lg-5">
+                  <!-- <p class="text-black-50">First, we wanted to take a look at which countries are affected by malaria deaths with a threshold greater than 5000.</p> -->
+                  <div id='geomap4' class='col-lg-12' style="width:100%; height: 600px;"></div>
+            
+                  </div>
+           
+                </div>
+                <div id="alldeaths" class="row align-items-center no-gutters mb-4 mb-lg-5">
+                    <!-- <p class="text-black-50">First, we wanted to take a look at which countries are affected by malaria deaths with a threshold greater than 5000.</p> -->
+                    <div id='geomap5' class='col-lg-12' style="width:100%; height: 600px;"></div>
+              
+                    </div>
+             
+                  </div>
+
+
+      </div> 
+    </section>
+  
+
+    <!-- Signup Section -->
+    <section id="signup" class="signup-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-lg-8 mx-auto text-center">
+
+            <!-- <i class="far fa-paper-plane fa-2x mb-2 text-white"></i> -->
+            <h2 class="text-white mb-5">Future Roadmap</h2>
+            <p class="text-white mb-3">Identify countries where current efforts are not enough</p>
+            <p class="text-white mb-3">Identify key donors and players in area of malaria eradication and impact of their efforts across countries</p>
+            <p class="text-white mb-3">Estimate the resources needed to eradicate malaria in top 5 countries with highest burden of malaria</p>
+
+
+          </div>
+        </div>
+      </div>
+      
+
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section bg-black">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                <h4 class="text-uppercase m-0">Team</h4>
+                <hr class="my-4">
+                <div class="small text-black-50">Christine Chynoweth, for HTML and Javascript; Joe Marchell, for data analysis and Plotly; Deepa Karnani, for GeoJavascript; Chankyu Kim, for MongoDB and Flask architecture; Saswati Mahapatra, for data cleaning.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                <h4 class="text-uppercase m-0">Vision</h4>
+                <hr class="my-4">
+                <div class="small text-black-50">Identify the countries with highest burden of malaria (# of reported cases and deaths under age 5) and countries with highest resource needs.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                <h4 class="text-uppercase m-0">Tools and Languages</h4>
+                <hr class="my-4">
+                <div class="small text-black-50">Javascript, HTML, Leaflet, Plotly, Flask, Excel, MongoDB, web-scraping</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+ 
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black small text-center text-white-50">
+      <div class="container">
+        Copyright &copy; Coding Bootcamp 2018
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script type='text/javascript'src="js/grayscale.min.js"></script>
+    <script type='text/javascript'src="js/choromalaria.js"></script>
+    <script type='text/javascript'src="js/choro50abovedeaths.js"></script>
+    <script type='text/javascript'src="js/choro15_49deaths.js"></script>
+    <script type='text/javascript'src="js/choro5_14deaths.js"></script>
+    <script type='text/javascript'src="js/choroalldeaths.js"></script>
+    <script type='text/javascript'src="js/scroll.js"></script>
+    <script type='text/javascript'src="js/malaria_5andunder.js"></script>
+    <script type='text/javascript' src="js/bar_chart.js"></script>
+    <script type='text/javascript' src='js/pie.js'></script>
+  </body>
+
+</html>
